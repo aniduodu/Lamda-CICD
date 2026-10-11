@@ -33,5 +33,5 @@ jobs:
         run: |
           cd Lambda
           zip -r deployment-package.zip . 
-          aws lambda update-function-code --function-name lambda_function --zip-file fileb://deployment-package.zip --region "$AWS_REGION"
+          aws lambda update-function-code --function-name My-Lamda-CICD-1 --zip-file fileb://deployment-package.zip --region "$AWS_REGION"
 
