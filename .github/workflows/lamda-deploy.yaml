@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'Lambda/**'
+      - '.github/workflows/lamda-deploy.yaml'
 
 jobs:
   deploy_lambda:
