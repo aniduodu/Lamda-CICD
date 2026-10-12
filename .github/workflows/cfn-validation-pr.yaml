@@ -2,15 +2,17 @@ name: Validate CloudFormation on PR
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, closed]
     paths:
       - 'cloudformation/**'
 
-Permissions:
-  pull-request: write
+permissions:
+  pull-requests: write
   contents: read
 
-Jobs:
+jobs:
   validate_cfn:
+    if: github.event.action != 'closed'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -41,9 +43,10 @@ Jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: `CloudFormation test stack deployed. Stack name: pr-test-stack-${{ github.event.pull_request.number }}`
-          
+            });
+
   cleanup-on-merge:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest 
     if: github.event.pull_request.merged == true
     steps:
       - name: Configure AWS credentials

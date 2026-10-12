@@ -18,8 +18,7 @@ Resources:
     Tags:
       - Key: Environment
         Value: !Ref Enviroment
-      - Key: Enviroment
-        Value: GitHubActionsTesting
+     
 
   Outputs:
     S3BucketName:
